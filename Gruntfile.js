@@ -1,11 +1,20 @@
 var files = {
 
+  dev: {
+    scripts: [
+      'scripts/**/*.js',
+    ],
+    styles: [
+      'sass/**/*.scss',
+    ],
+  },
+
   vendor: {
     scripts: [
-      //'vendor/scripts/imagesloaded.pkgd.min.js',
-      //'vendor/scripts/google-image-layout-modified.js',
-      'vendor/scripts/photoswipe-ui-default.min.js',
-      'vendor/scripts/photoswipe.js',
+      'vendor/scripts/bigfoot.min.js',
+    ],
+    styles: [
+      'vendor/styles/bigfoot-default.scss',
     ],
   },
 };
@@ -23,7 +32,7 @@ module.exports = function(grunt) {
       },
       dev: {
         files: {
-          'public/styles/<%= pkg.name %>.css': 'sass/style.scss',
+          'public/styles/<%= pkg.name %>.css': [files.vendor.styles, files.dev.styles],
         },
       },
     },
@@ -33,7 +42,7 @@ module.exports = function(grunt) {
           //stripBanners: true,
       },
       all: {
-        src: files.vendor.scripts,
+        src: [files.vendor.scripts, files.dev.scripts],
         dest: './public/scripts/<%= pkg.name %>.js',
       },
     },
@@ -81,11 +90,11 @@ module.exports = function(grunt) {
 
     watch: {
       scripts: {
-        files: ['vendor/scripts/**/*.js'],
-        tasks: ['concat', 'notify:scripts'],
+        files: [files.vendor.scripts, files.dev.scripts],
+        tasks: ['concat', 'uglify', 'notify:scripts'],
       },
       sass: {
-        files: ['sass/**/*.scss'],
+        files: [files.vendor.styles, files.dev.styles],
         tasks: ['sass:dev', 'notify:sass', 'autoprefixer:css' ],
       },
     },
