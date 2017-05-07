@@ -42,7 +42,8 @@ module.exports = function(grunt) {
           //stripBanners: true,
       },
       all: {
-        src: [files.vendor.scripts, files.dev.scripts],
+        //src: [files.vendor.scripts, files.dev.scripts],
+        src: [files.dev.scripts],
         dest: './public/scripts/<%= pkg.name %>.js',
       },
     },
@@ -89,8 +90,13 @@ module.exports = function(grunt) {
     },
 
     watch: {
+      options: {
+        livereload: true,
+      },
+
       scripts: {
-        files: [files.vendor.scripts, files.dev.scripts],
+        //files: [files.vendor.scripts, files.dev.scripts],
+        files: [files.dev.scripts],
         tasks: ['concat', 'uglify', 'notify:scripts'],
       },
       sass: {

@@ -17,6 +17,7 @@ function elit_footnote_enqueue_scripts() {
 
   $styles_path = 'public/styles/elit-footnote.css';
   $scripts_path = 'public/scripts/elit-footnote.min.js';
+  $vendor_scripts_path = 'vendor/scripts/bigfoot.min.js';
 
   wp_enqueue_style(
     'elit-footnote-styles',
@@ -26,9 +27,16 @@ function elit_footnote_enqueue_scripts() {
   );
 
   wp_enqueue_script(
+    'elit-footnote-vendor-scripts',
+    plugins_url( $vendor_scripts_path, __FILE__ ),
+    array( 'jquery' ),
+    filemtime( plugin_dir_path(__FILE__) . '/' . $vendor_scripts_path )
+  );
+
+  wp_enqueue_script(
     'elit-footnote-scripts',
     plugins_url( $scripts_path, __FILE__ ),
-    array( 'jquery' ),
+    array( 'elit-footnote-vendor-scripts' ),
     filemtime( plugin_dir_path(__FILE__) . '/' . $scripts_path ),
     true
   );

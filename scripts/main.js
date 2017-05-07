@@ -2,6 +2,21 @@ console.log('hiya from footnote');
 
 jQuery(document).ready(function($) {
 
-  $.bigfoot();
+  var $bigfoot = $.bigfoot({
+    //actionOriginalFN: 'ignore',
+    activateCallback: function($popover, $button) {
+      console.log($popover);
+      console.log($button);
+    },
+    //allowMultipleFN: false,
+    anchorPattern: /(fn|footnote|note|more)[:\-_\d]/gi,
+    //appendPopoversTo: 'body',
+    //preventPageScroll: false,
+
+  });
+
+  //var breakpoint = $bigfoot.addBreakpoint('(max-width: 480px)');
+
+
 
 });
