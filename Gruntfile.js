@@ -5,7 +5,7 @@ var files = {
       'scripts/**/*.js',
     ],
     styles: [
-      'sass/**/*.scss',
+      'sass/style.scss',
     ],
   },
 
@@ -32,7 +32,8 @@ module.exports = function(grunt) {
       },
       dev: {
         files: {
-          'public/styles/<%= pkg.name %>.css': [files.vendor.styles, files.dev.styles],
+          //'public/styles/<%= pkg.name %>.css': [files.vendor.styles, files.dev.styles],
+          'public/styles/<%= pkg.name %>.css': [files.dev.styles],
         },
       },
     },

@@ -210,3 +210,14 @@
     top: -0.65em; }
   .is-positioned-top .bigfoot-footnote__tooltip {
     bottom: -0.65em; }
+
+.bigfoot-footnote {
+  border-color: #ef3f23; }
+  .bigfoot-footnote__content h5 {
+    margin-bottom: .25rem;
+    font-size: 1.33rem;
+    color: #ef3f23; }
+  .bigfoot-footnote__content p {
+    margin-bottom: 0; }
+  .bigfoot-footnote__tooltip {
+    border-color: #ef3f23; }

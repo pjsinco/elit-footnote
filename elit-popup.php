@@ -4,7 +4,7 @@
  * Plugin Name: Elit Popup
  * Plugin URI: https://github.com/pjsinco/elit-popup
  * Description: Display tooltip pop-ups
- * Version: 0.1.0
+ * Version: 0.5.0
  * Author: Patrick Sinco
  * License: GPL2
  */
@@ -55,9 +55,9 @@ class Elit_Popup
 
     $shortcode_atts = shortcode_atts( array(
       'name' => '',
-      'thing' => '',
-      'other-thing' => '',
-      'another-thing' => '',
+      'school' => '',
+      'res' => '',
+      'cert' => '',
     ), $atts, 'popup' );
 
     $atts = $this->elit_popup_format_atts( $shortcode_atts );
@@ -71,14 +71,14 @@ class Elit_Popup
     if ( $shortcode_atts['name'] ) {
       $item .= '<h5>' . $shortcode_atts['name'] . '</h5>';
     }
-    if ( $shortcode_atts['thing'] ) {
-      $item .= '<p><strong>Thing:</strong> ' . $shortcode_atts['thing'] . '</p>';
+    if ( $shortcode_atts['school'] ) {
+      $item .= '<p><strong>School:</strong> ' . $shortcode_atts['school'] . '</p>';
     }
-    if ( $shortcode_atts['other-thing'] ) {
-      $item .= '<p><strong>Other Thing:</strong> ' . $shortcode_atts['other-thing'] . '</p>';
+    if ( $shortcode_atts['res'] ) {
+      $item .= '<p><strong>Residency:</strong> ' . $shortcode_atts['res'] . '</p>';
     }
-    if ( $shortcode_atts['another-thing'] ) {
-      $item .= '<p><strong>Another Thing:</strong> ' . $shortcode_atts['another-thing'] . '</p>';
+    if ( $shortcode_atts['cert'] ) {
+      $item .= '<p><strong>Board-certified: </strong> ' . $shortcode_atts['cert'] . '</p>';
     }
 
     $item .= "<a href='#fnref:$count' title='Return to article'> ↩</a></li>";

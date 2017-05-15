@@ -1,3 +1,30 @@
+@import '../vendor/styles/bigfoot-default';
 
+$red: #ef3f23;
+
+
+.bigfoot-footnote {
+
+  border-color: $red;
+
+  &__content {
+
+    & h5 {
+      margin-bottom: .25rem;
+      font-size: 1.33rem;
+      color: $red;    
+    }
+
+    & p {
+      margin-bottom: 0;
+    }
+
+  }
+
+  &__tooltip {
+    border-color: $red;
+  }
+
+}
 
 
