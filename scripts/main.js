@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
       console.log($button);
     },
     //allowMultipleFN: false,
-    anchorPattern: /(fn|footnote|note|more)[:\-_\d]/gi,
+    anchorPattern: /(fn|footnote|note|popup)[:\-_\d]/gi,
     //appendPopoversTo: 'body',
     //preventPageScroll: false,
 

@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Plugin Name: Elit Footnote
- * Plugin URI: https://github.com/pjsinco/elit-footnote
- * Description: Display footnotes
+ * Plugin Name: Elit Popup
+ * Plugin URI: https://github.com/pjsinco/elit-popup
+ * Description: Display tooltip pop-ups
  * Version: 0.1.0
  * Author: Patrick Sinco
  * License: GPL2
@@ -13,26 +13,26 @@ if ( !defined( 'WPINC' ) ) {
   die;
 }
 
-class Elit_More
+class Elit_Popup
 {
 
   private $footnotes = array();
   private $foo;
 
   public function __construct() {
-    add_action( 'wp_enqueue_scripts' , array( $this, 'elit_more_enqueue_scripts' ) );
-    add_action( 'init' , array( $this, 'elit_more_init' ) );
+    add_action( 'wp_enqueue_scripts' , array( $this, 'elit_popup_enqueue_scripts' ) );
+    add_action( 'init' , array( $this, 'elit_popup_init' ) );
   }
 
-  public function elit_more_init() {
+  public function elit_popup_init() {
 
-    if ( shortcode_exists('more') ) return;
+    if ( shortcode_exists('popup') ) return;
 
-    add_shortcode( 'more', array( $this, 'elit_more_shortcode' ) );
-    add_filter( 'the_content',  array( $this, 'elit_more_content' ), 12 );
+    add_shortcode( 'popup', array( $this, 'elit_popup_shortcode' ) );
+    add_filter( 'the_content',  array( $this, 'elit_popup_content' ), 12 );
   }
 
-  public function elit_more_content( $content ) {
+  public function elit_popup_content( $content ) {
     global $id;
     $footnotes  = '<div class="footnotes">';
     $footnotes .= '<ol>';
@@ -46,27 +46,27 @@ class Elit_More
   }
 
 
-  public function elit_more_shortcode( $atts, $content )
+  public function elit_popup_shortcode( $atts, $content )
   {
 
-    wp_enqueue_style('elit-footnote-styles');
-    wp_enqueue_script('elit-footnote-vendor-scripts');
-    wp_enqueue_script('elit-footnote-scripts');
+    wp_enqueue_style('elit-popup-styles');
+    wp_enqueue_script('elit-popup-vendor-scripts');
+    wp_enqueue_script('elit-popup-scripts');
 
     $shortcode_atts = shortcode_atts( array(
       'name' => '',
       'thing' => '',
       'other-thing' => '',
       'another-thing' => '',
-    ), $atts, 'more' );
+    ), $atts, 'popup' );
 
-    $atts = $this->elit_more_format_atts( $shortcode_atts );
+    $atts = $this->elit_popup_format_atts( $shortcode_atts );
 
     global $id;
 
     $count = count($this->footnotes[$id]);
 
-    $item  = "<li class='footnote' id='more:$count'>";
+    $item  = "<li class='footnote' id='popup:$count'>";
 
     if ( $shortcode_atts['name'] ) {
       $item .= '<h5>' . $shortcode_atts['name'] . '</h5>';
@@ -88,7 +88,7 @@ class Elit_More
     }
 
     array_push($this->footnotes[$id], $item);
-    return "<sup id='fnref:$count'><a href='#more:$count' rel='footnote'></a></sup>";
+    return "<sup id='fnref:$count'><a href='#popup:$count' rel='footnote'></a></sup>";
   }
 
   /**
@@ -97,7 +97,7 @@ class Elit_More
    * @param array $atts The shortcode attributes
    * @return array $atts The shortcode attributes with replaced keys
    */
-  public function elit_more_format_atts( $atts ) {
+  public function elit_popup_format_atts( $atts ) {
     
     return array_combine(
       array_map( function( $key ) use ( $atts ) { 
@@ -107,30 +107,30 @@ class Elit_More
     );
   }
 
-  public function elit_more_enqueue_scripts() {
+  public function elit_popup_enqueue_scripts() {
   
-    $styles_path = 'public/styles/elit-footnote.css';
-    $scripts_path = 'public/scripts/elit-footnote.min.js';
+    $styles_path = 'public/styles/elit-popup.css';
+    $scripts_path = 'public/scripts/elit-popup.min.js';
     $vendor_scripts_path = 'vendor/scripts/bigfoot.min.js';
 
     wp_register_style(
-      'elit-footnote-styles',
+      'elit-popup-styles',
       plugins_url( $styles_path, __FILE__ ),
       array(),
       filemtime( plugin_dir_path(__FILE__) . '/' . $styles_path )
     );
   
     wp_register_script(
-      'elit-footnote-vendor-scripts',
+      'elit-popup-vendor-scripts',
       plugins_url( $vendor_scripts_path, __FILE__ ),
       array( 'jquery' ),
       filemtime( plugin_dir_path(__FILE__) . '/' . $vendor_scripts_path )
     );
   
     wp_register_script(
-      'elit-footnote-scripts',
+      'elit-popup-scripts',
       plugins_url( $scripts_path, __FILE__ ),
-      array( 'elit-footnote-vendor-scripts' ),
+      array( 'elit-popup-vendor-scripts' ),
       filemtime( plugin_dir_path(__FILE__) . '/' . $scripts_path ),
       true
     );
@@ -138,6 +138,6 @@ class Elit_More
   }
 }
 
-$elit_more = new Elit_More;
+$elit_popup = new Elit_Popup;
 
 

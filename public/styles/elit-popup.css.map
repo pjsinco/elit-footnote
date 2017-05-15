@@ -1,6 +1,6 @@
 {
 	"version": 3,
-	"file": "elit-footnote.css",
+	"file": "elit-popup.css",
 	"sources": [
 		"../../vendor/styles/bigfoot-default.scss"
 	],
