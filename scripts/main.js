@@ -1,5 +1,3 @@
-console.log('hiya from footnote');
-
 jQuery(document).ready(function($) {
 
   var $bigfoot = $.bigfoot({
@@ -14,9 +12,5 @@ jQuery(document).ready(function($) {
     //preventPageScroll: false,
 
   });
-
   //var breakpoint = $bigfoot.addBreakpoint('(max-width: 480px)');
-
-
-
 });

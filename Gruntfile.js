@@ -92,7 +92,7 @@ module.exports = function(grunt) {
 
     watch: {
       options: {
-        livereload: true,
+        //livereload: true,
       },
 
       scripts: {

@@ -33,12 +33,18 @@ class Elit_Popup
   }
 
   public function elit_popup_content( $content ) {
+
+    if ( ! is_singular() || ! $this->footnotes ) return $content;
+
     global $id;
+
     $footnotes  = '<div class="footnotes">';
     $footnotes .= '<ol>';
+
     foreach ($this->footnotes[$id] as $footnote) {
       $footnotes .= $footnote;
     }
+
     $footnotes .= '</ol>';
     $footnotes .= '</div>';
     
