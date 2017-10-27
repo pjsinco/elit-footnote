@@ -4,7 +4,7 @@
  * Plugin Name: Elit Popup
  * Plugin URI: https://github.com/pjsinco/elit-popup
  * Description: Display tooltip pop-ups
- * Version: 0.5.0
+ * Version: 0.6.0
  * Author: Patrick Sinco
  * License: GPL2
  */
